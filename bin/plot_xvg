@@ -32,18 +32,18 @@ def plot_xvg(filename):
     show_legend = True
 
     #Extract header info
-    for line in header:
-        if '@' and 'title' in line:
-            title = line.split("\"")[1] if "\"" in line else line.split()[-1]
-        if '@' and 'xaxis' and 'label' in line:
-            xlabel = line.split("\"")[1] if "\"" in line else line.split()[-1]
-        if '@' and 'yaxis' and 'label' in line:
-            ylabel = line.split("\"")[1] if "\"" in line else line.split()[-1]
-        #Check if legend is off
-        if '@' and 'legend' and 'off' in line:
+        #for line in header:
+    	if 'title' in line:
+        	title = line.split("\"")[1] if "\"" in line else line.split()[-1]
+	if 'xaxis' in line and 'label' in line:
+        	xlabel = line.split("\"")[1] if "\"" in line else line.split()[-1]	
+	if 'yaxis' in line and 'label' in line:
+		ylabel = line.split("\"")[1] if "\"" in line else line.split()[-1]
+	Check if legend is off
+        if 'legend' in line and 'off' in line:
             show_legend = False
         #Get legend 
-        if '@' and 'legend' in line and line.strip().startswith('@ s') and show_legend:
+        if 'legend' in line and line.strip().startswith('@ s') and show_legend:
             parts = line.strip().split()
             if len(parts) >= 4 and parts[0] == '@' and parts[2] == 'legend':
                 index = int(parts[1][1:])
